@@ -1,35 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import Navbar from "./assets/components/Navbar";
+import Footer from "./assets/components/Footer";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+
+  const appname={
+    name:'sudhir',
+    app:'react'
+  }
+  const [check,setCheck]=useState(false);
+  function handleSumbit(e){
+    e.preventDefault();
+    setCheck(true)
+    //alert("Submitted")
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="h-screen w-screen flex flex-col justify-start items-center" >
+        <Navbar appname={appname} />
+        <Footer appname={appname}/>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <div className="h-screen w-screen flex justify-center items-center bg-gray-100">
+        <div className="h-3/6 w-[30%] flex flex-col justify-center items-center bg-blue-100 rounded-3xl shadow-2xl">
+          <h1 className="text-2xl font-bold mb-4">LOGIN</h1>
+          <form className="w-[80%] h-[80%] flex flex-col justify-center items-center gap-4">
+            <input className="p-3 bg-[#f8f8f8] w-full font-bold outline-none active:outline-none focus:border-b-2 hover:border-green-500" type="text" id="" placeholder="Name" />
+            <input className="p-3 bg-[#f8f8f8] w-full font-bold outline-none active:outline-none focus:border-b-2 hover:border-green-500" type="text" id="" placeholder="email" />
+            <input className="p-3 bg-[#f8f8f8] w-full font-bold outline-none active:outline-none focus:border-b-2 hover:border-green-500" type="number" id="" placeholder="phone" />
+            <input className="p-3 bg-[#f8f8f8] w-full font-bold outline-none active:outline-none focus:border-b-2 hover:border-green-500" type="password" id="" placeholder="password" />
+            <button className="w-full bg-green-600 text-white p-3" type="submit" onClick={handleSumbit}>Register</button>
+          </form>
+         {check&&<Submit />}
+        </div>
+      </div>  
+    </>
+  ) 
+}
+function Submit(){
+  return(
+    <>
+      <h1 className="flex justify-center items-center">SUBMITTED!!</h1>
     </>
   )
 }
-
-export default App
+export default App;
